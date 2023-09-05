@@ -6,6 +6,7 @@ Objective: main function
 import numpy as np
 from data_fetcher import Data_fetcher
 from data_visual import DataVisual
+from lin_regressor import Lin_reg
 
 def log_dif(df):
     """
@@ -91,8 +92,12 @@ def main():
     # print(data_risk_free.head(20))
 
     # Plotting daily_GE_risk_free vs. daily_SP500_risk_free
-    visualizer.plt_scatter(data_risk_free, 'daily_GE_risk_free', 'daily_SP500_risk_free', 
-                            'daily GE risk-free', 'daily SP500 risk-free', 'Daily risk-free, GE vs. SP500')
+    # visualizer.plt_scatter(data_risk_free, 'daily_GE_risk_free', 'daily_SP500_risk_free', 
+    #                         'daily GE risk-free', 'daily SP500 risk-free', 'Daily risk-free, GE vs. SP500')
+
+    # 1.3 Fitting the Linear Regression for CAPM
+    lin_regressor = Lin_reg()
+    lin_regressor.fit_ols(data_risk_free.loc[:,'daily_GE_risk_free'], data_risk_free.loc[:,'daily_SP500_risk_free'])
     
 
 
