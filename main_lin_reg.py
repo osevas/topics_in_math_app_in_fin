@@ -97,7 +97,8 @@ def main():
 
     # 1.3 Fitting the Linear Regression for CAPM
     lin_regressor = Lin_reg()
-    lin_regressor.fit_ols(data_risk_free.loc[:,'daily_GE_risk_free'], data_risk_free.loc[:,'daily_SP500_risk_free'])
+    lin_reg_results = lin_regressor.fit_ols(data_risk_free.loc[:,'daily_GE_risk_free'], data_risk_free.loc[:,'daily_SP500_risk_free'])
+    lin_regressor.plt_fit(lin_reg_results)
     
 
 

@@ -6,6 +6,7 @@ Date: 2023-09-04
 
 # Libraries
 import statsmodels.api as sm
+import matplotlib.pyplot as plt
 
 class Lin_reg:
     """
@@ -40,4 +41,11 @@ class Lin_reg:
         print('Median: {}'.format(results.resid.median()))
         print('3Q: {}'.format(results.resid.quantile(q=0.75)))
         print('Max: {}'.format(results.resid.max()))
+        return results
+
+    def plt_fit(self, results):
+        fig, ax = plt.subplots()
+        fig = sm.graphics.plot_fit(results, 1, ax=ax)
+        plt.show()
         return None
+
