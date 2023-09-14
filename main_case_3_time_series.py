@@ -8,6 +8,7 @@ from data_fetcher import Data_fetcher
 from data_visual import DataVisual
 from lin_regressor import Lin_reg
 from data_cleaner import DataCleaner
+from data_analyzer import DataAnalyzer
 
 def log_dif(df):
     """
@@ -74,7 +75,9 @@ def main():
     data_dgs10 = data_cleaner1.keep_cols(data_tres_cleaned, cols=['DGS10'])
     # print(data_dgs10.head(20))
 
+    # -----------------------------------------------------------------------------------------------------------------------
     # 1.2 Create weekly and monthly time series
+    # -----------------------------------------------------------------------------------------------------------------------
     data_dgs10_weekly = data_dgs10.resample('7D').last()
     data_dgs10_monthly = data_dgs10.resample('1M').last()
 
@@ -84,7 +87,20 @@ def main():
     # print(data_dgs10_weekly.shape)
     # print(data_dgs10_monthly.shape)
 
+    # -----------------------------------------------------------------------------------------------------------------------
     # 1.3 The ACF and PACF for daily, weekly, monthly series
+    # -----------------------------------------------------------------------------------------------------------------------
+    analyzer1 = DataAnalyzer(data_dgs10_weekly, 'DGS10 Weekly')
+    analyzer1.acf_pacf(feature='DGS10')
+
+    analyzer2 = DataAnalyzer(data_dgs10_monthly, 'DGS10 Monthly')
+    analyzer2.acf_pacf(feature='DGS10')
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    # 1.4 Conduct Augmented Dickey-Fuller Test for Unit Roots
+    # -----------------------------------------------------------------------------------------------------------------------
+
+
 
 
     
